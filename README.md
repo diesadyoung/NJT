@@ -1,4 +1,4 @@
-# Basic-nodejs-mitso
+# Basic-nodejs
 
 ## Prerequisites
 
