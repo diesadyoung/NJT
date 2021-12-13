@@ -5,11 +5,11 @@ const {
   class Price {
     constructor({
       id = uuid(),
-      scheduleld = '1',
+      scheduleld = null,
       priceValue = 1400,
-      priceCurrency = EUR,
-      createdAt = 02/01/2021,
-      updatedAt = 05/02/2021
+      priceCurrency = 'EUR',
+      createdAt = new Date(),
+      updatedAt = new Date()
     } = {}) {
       this.id = id;
       this.scheduleld = scheduleld;

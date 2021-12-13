@@ -4,13 +4,13 @@ const {
   
   class Schedule {
     constructor({
-      id = uuid(),
+      id = uuid(), 
       productId = '1',
       isActive = true,
-      startDate = 10/02/2021,
-      endDate = 24/02/2021,
-      createdAt = 02/01/2021,
-      updatedAt = 05/02/2021
+      startDate = new Date(),
+      endDate = new Date(),
+      createdAt = new Date(),
+      updatedAt = new Date()
     } = {}) {
       this.id = id;
       this.productId = productId;

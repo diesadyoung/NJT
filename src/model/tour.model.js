@@ -4,13 +4,13 @@ const {
   
   class Tour {
     constructor({
-      id = uuid(),
+      id = uuid(), 
       title = 'Egypt',
       slug = "Egypt,5Stars,lowPrice",
       description = "Some Text is here!",
       isActive = true,
-      createdAt = 02/01/2021,
-      updatedAt = 05/02/2021
+      createdAt = new Date(),
+      updatedAt = new Date()
     } = {}) {
       this.id = id;
       this.title = title;
