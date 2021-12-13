@@ -30,7 +30,7 @@ const {
         endDate,
         createdAt,
         updatedAt
-      } = Price;
+      } = schedule;
       return {
         id,
         productId,

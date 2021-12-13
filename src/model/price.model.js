@@ -27,7 +27,7 @@ const {
         priceCurrency,
         createdAt,
         updatedAt
-      } = Price;
+      } = price;
       return {
         id,
         scheduleld,

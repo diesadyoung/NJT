@@ -7,7 +7,8 @@ const getAll = async () => Prices;
 const getById = async (id) => Prices.find((price) => price.id === id);
 
 const getPriceIdByScheduleId = async (scheduleId) => {
-    const prices = prices.filter((price) => price.scheduleId === scheduleId)
+    const prices = Prices.filter((price) => price.scheduleId === scheduleId);
+    return prices;
 }
 
 
@@ -27,7 +28,7 @@ const createPrice = async (
         createdAt,
         updatedAt
     })
-    prices.push(price)
+    Prices.push(price)
     return price
 }
 
@@ -58,18 +59,18 @@ const updateById = async (id) => ({
 
 };
 const deleteById = async (id) => {
-    const pricePos = prices.findIndex((price) => price.id === id);
+    const pricePos = Prices.findIndex((price) => price.id === id);
 
     if (pricePos === -1) return null;
 
-    const priceDeletable = prices[pricePos];
+    const priceDeletable = Prices[pricePos];
 
-    prices.splice(pricePos, 1);
+    Prices.splice(pricePos, 1);
     return priceDeletable;
 }
 
 const deleteByScheduleId = async (scheduleId) => {
-    const schedules = prices.filter((price) => price.scheduleId === scheduleId);
+    const schedules = Prices.filter((price) => price.scheduleId === scheduleId);
 
     await Promise.allSettled(schedules.map(async (price) => deleteById(price.id)))
 }

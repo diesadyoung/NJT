@@ -30,7 +30,7 @@ const {
         description,
         createdAt,
         updatedAt
-      } = Price;
+      } = tour;
       return {
         id,
         title,
