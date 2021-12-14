@@ -1,4 +1,4 @@
-# Basic-nodejs
+Node JS tour sales
 
 ## Prerequisites
 
