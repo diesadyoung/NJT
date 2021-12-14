@@ -1,16 +1,16 @@
-const {
-    StatusCodes
-} = require('http-status-codes');
+import {StatusCodes} from "http-status-codes";
+import {Request, Response, Router} from "express";
 
-const router = require('express').Router();
-const Tour = require('../model/tour.model');
-const Schedule = require('../model/price.model');
+import Tour from '../model/tour.model';
+import Schedule from '../model/price.model';
 
-const toursService = require('../service/tour.service');
-const catchErrors = require('../common/catchErrors');
+import toursService from '../service/tour.service';
+import catchErrors from '../common/catchErrors';
+
+const router = Router();
 
 router.route('/').get(
-    catchErrors(async (req, res) => {
+    catchErrors(async (req: Request, res: Response) => {
         const tours = await toursService.getAll();
 
         res.json(tours.map(Tour.toResponse));
@@ -18,12 +18,12 @@ router.route('/').get(
 );
 
 router.route(':/:id').get(
-    catchErrors(async (req, res) => {
+    catchErrors(async (req: Request, res: Response) => {
         const {
             id
         } = req.params;
 
-        const tour = await toursService.getById(id);
+        const tour = await toursService.getById(id || '');
 
         if (tour) {
             res.json(Tour.toResponse(tour));
@@ -39,12 +39,12 @@ router.route(':/:id').get(
 );
 
 router.route('/:id/schedules').get(
-    catchErrors(async (req, res) => {
+    catchErrors(async (req: Request, res: Response) => {
         const {
             id
         } = req.params;
 
-        const schedules = await toursService.getSchedulesByTourId(id);
+        const schedules = await toursService.getSchedulesByTourId(id || '');
 
         if (schedules) {
             res.json(schedules.map((ord) => Schedule.toResponse(ord)));
@@ -60,7 +60,7 @@ router.route('/:id/schedules').get(
 );
 
 router.route('/').post(
-    catchErrors(async (req, res) => {
+    catchErrors(async (req: Request, res: Response) => {
         const {
             title,
             slug,
@@ -107,7 +107,7 @@ router.route(':/:id').put(
         } = req.body;
 
         const tour = await toursService.updateById({
-            id,
+            id: id || '',
             title,
             slug,
             description,
@@ -130,12 +130,12 @@ router.route(':/:id').put(
 );
 
 router.route('/:id').delete(
-    catchErrors(async (req, res) => {
+    catchErrors(async (req: Request, res: Response) => {
         const {
             id
         } = req.params;
 
-        const tour = await toursService.deleteById(id);
+        const tour = await toursService.deleteById(id || '');
 
         if (!tour) {
             return res
@@ -155,4 +155,4 @@ router.route('/:id').delete(
     })
 );
 
-module.exports = router;
+export default router;
