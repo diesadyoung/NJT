@@ -7,6 +7,7 @@ import YAML from 'yamljs';
 import tourRouter from "./resources/tour/tour.router";
 import scheduleRouter from "./resources/schedule/schedule.router";
 import priceRouter from "./resources/price/price.router";
+import {errorHandling, logging} from "./middlewares";
 
 const app = express();
 
@@ -24,6 +25,8 @@ app.use('/', (req, res, next) => {
   next();
 });
 
+app.use(logging);
+app.use(errorHandling);
 app.use('/tour', tourRouter);
 app.use('/schedule', scheduleRouter);
 app.use('/price', priceRouter);
