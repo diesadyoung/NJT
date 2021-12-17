@@ -1,5 +1,7 @@
 const express = require('express');
-const userRouter = require('./resources/users/user.router');
+const tourRouter = require("./router/tour.router");
+const scheduleRouter = require("./router/schedule.router");
+const priceRouter = require("./router/price.router");
 
 const app = express();
 
@@ -13,6 +15,8 @@ app.use('/', (req, res, next) => {
   next();
 });
 
-app.use('/users', userRouter);
+app.use('/tours', tourRouter);
+app.use('/schedules', scheduleRouter);
+app.use('/prices', priceRouter);
 
 module.exports = app;
